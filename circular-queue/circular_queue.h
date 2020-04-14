@@ -21,6 +21,8 @@ int init_circular_queue(struct circular_queue *cs, uint capacity,
                         uint element_sz_bytes);
 int clean_circular_queue(struct circular_queue *cs);
 
+int reset_circular_queue(struct circular_queue *cs);
+
 int push_circular_queue(struct circular_queue *cs, char *element);
 int pop_back_circular_queue(struct circular_queue *cs, char *result);
 int pop_front_circular_queue(struct circular_queue *cs, char *result);

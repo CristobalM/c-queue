@@ -38,6 +38,14 @@ int clean_circular_queue(struct circular_queue *cs) {
   return CIRCULAR_QUEUE_SUCCESS_ECODE;
 }
 
+int reset_circular_queue(struct circular_queue *cs) {
+  cs->front_position = 0;
+  cs->back_position = 0;
+  cs->nof_items = 0;
+
+  return CIRCULAR_QUEUE_SUCCESS_ECODE;
+}
+
 int push_circular_queue(struct circular_queue *cs, char *element) {
   if (IS_FULL(cs)) {
     return CIRCULAR_QUEUE_CANT_ADD_MORE_ELEMENTS_ECODE;
