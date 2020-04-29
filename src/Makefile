@@ -1,6 +1,6 @@
 ROOT_PATH=$(shell pwd)/..
 
-all: build clean
+all: build
 
 build: circular_queue.o libcircular_queue.a
 	mkdir -p ${ROOT_PATH}/bin && cp libcircular_queue.a ${ROOT_PATH}/bin/
@@ -13,5 +13,3 @@ libcircular_queue.a:
 
 clean:
 	rm -f circular_queue.o libcircular_queue.a
-
-
