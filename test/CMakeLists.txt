@@ -5,10 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
-include_directories(../circular-queue)
+include_directories(../include)
 
 
-add_library(circular_queue ../circular-queue/circular_queue.h ../circular-queue/circular_queue.c)
+add_library(circular_queue ../include/circular_queue.h ../src/circular_queue.c)
 
 ## TESTING
 

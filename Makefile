@@ -1,9 +1,17 @@
 
-MODULES_DIRS := circular-queue
+CURRENT_PATH=$(shell pwd)
+
+MODULES_DIRS := src
 CFLAGS :=  -Wall -Wextra -std=c99 -pedantic -Wmissing-prototypes -Wstrict-prototypes \
     -Wold-style-definition -Werror -O3
 
-MAKE_FLAGS=CFLAGS="${CFLAGS}"
+DEBUG_FLAGS := -Wall -Wextra -std=c99 -pedantic -Wmissing-prototypes -Wstrict-prototypes \
+    -Wold-style-definition -Werror -g
+
+INCLUDES=-I${CURRENT_PATH}/include
+
+MAKE_FLAGS=CFLAGS="${CFLAGS}" INCLUDES="${INCLUDES}"
+DEBUG_MAKE_FLAGS=CFLAGS="${DEBUG_FLAGS}" INCLUDES="${INCLUDES}"
 
 build: modules
 
@@ -23,6 +31,11 @@ modules:
 		$(MAKE) -C $$dir ${MAKE_FLAGS}; \
 	done
 
+debug-build:
+	for dir in ${MODULES_DIRS}; do \
+		$(MAKE) -C $$dir ${DEBUG_MAKE_FLAGS}; \
+	done
+
 
 test-all:
 	cd test && mkdir -p build && cd build && cmake .. && make && ./circular_queue_test
@@ -31,5 +44,5 @@ test-all:
 format:
 	find . -regex '.*\.\(c\|h\)' -exec clang-format -style=file -i {} \;
 
-cleanall: clean
+clean-all: clean
 	rm -rf bin
